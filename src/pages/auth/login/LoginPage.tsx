@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link as RouterLink } from "react-router";
 
@@ -24,7 +24,7 @@ import { handleApiError } from "@/utils/error-handler.utils";
 import FormAlert from "@/components/ui/Alert";
 import { useSnackbarAlert } from "@/hooks/useSnackbar";
 import { successMessages } from "@/utils/properties";
-import { useAuth } from "@/context/AuthProvider";
+import { useAuth } from "@/context/auth-context";
 import { consumeSessionEndedNotice } from "@/utils/sessionExpiry.utils";
 
 export default function SignIn() {
@@ -40,13 +40,9 @@ export default function SignIn() {
   const { showSuccess } = useSnackbarAlert();
 
   const [remember, setRemember] = useState(false);
-  const [authError, setAuthError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (consumeSessionEndedNotice()) {
-      setAuthError("Your session ended. Sign in again.");
-    }
-  }, []);
+  const [authError, setAuthError] = useState<string | null>(() =>
+    consumeSessionEndedNotice() ? "Your session ended. Sign in again." : null,
+  );
 
   const onSubmit = async (data: LoginFormData) => {
     setAuthError(null);

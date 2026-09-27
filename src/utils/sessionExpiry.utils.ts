@@ -1,5 +1,5 @@
-import { API_ENDPOINTS } from "./api.js";
-import { AUTH_SESSION_ENDED_NOTICE_KEY } from "./auth-storage.js";
+import { API_ENDPOINTS } from "./api";
+import { AUTH_SESSION_ENDED_NOTICE_KEY } from "./auth-storage";
 
 const SESSION_EXEMPT_ENDPOINTS: readonly string[] = [
   API_ENDPOINTS.AUTH_LOGIN,
@@ -14,7 +14,7 @@ let handler: SessionExpiredHandler | null = null;
 let isHandling = false;
 let memoryNotice = false;
 
-export function isPublicAuthUrl(url = ""): boolean {
+function isPublicAuthUrl(url = ""): boolean {
   return SESSION_EXEMPT_ENDPOINTS.some((endpoint) => url.includes(endpoint));
 }
 

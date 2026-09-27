@@ -1,13 +1,10 @@
 import { styled } from "@mui/material/styles";
-import { Typography } from "@mui/material";
+import { Typography, type TypographyProps } from "@mui/material";
 
-const CustomFormLabel = styled((props: any) => (
-  <Typography
-    required={props.required}
-    {...props}
-    component="label"
-    htmlFor={props.htmlFor}
-  />
+type CustomFormLabelProps = Omit<TypographyProps<"label">, "component">;
+
+const CustomFormLabel = styled((props: CustomFormLabelProps) => (
+  <Typography {...props} component="label" />
 ))(({ theme }) => ({
   marginBottom: "4px",
   display: "block",

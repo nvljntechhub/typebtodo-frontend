@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const StatusComingSoon = (props: Props) => {
+const StatusComingSoon = () => {
   return <div>StatusComingSoon</div>;
 };
 

@@ -24,7 +24,7 @@ const StyledSwitch = styled(MuiSwitch)(({ theme }) => ({
   }),
 }));
 
-export type SwitchProps = MuiSwitchProps & {
+type SwitchProps = MuiSwitchProps & {
   label?: string;
 };
 

@@ -1,5 +1,4 @@
 import { CssBaseline } from "@mui/material";
-import "./App.css";
 import routes from "./routes";
 import { AppThemeProvider } from "./theme/AppThemeProvider";
 import { SnackbarProvider } from "notistack";

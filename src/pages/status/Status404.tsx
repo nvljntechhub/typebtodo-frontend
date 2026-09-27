@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const Status404 = (props: Props) => {
+const Status404 = () => {
   return <div>Status404</div>;
 };
 

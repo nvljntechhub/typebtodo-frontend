@@ -12,7 +12,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <Box>
         {label && (
-          <CustomFormLabel required={required}>
+          <CustomFormLabel>
             {label} {required && <StyledRequiredFieldIndicator />}
           </CustomFormLabel>
         )}

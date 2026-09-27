@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const Status500 = (props: Props) => {
+const Status500 = () => {
   return <div>Status500</div>;
 };
 

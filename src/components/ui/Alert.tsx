@@ -1,24 +1,24 @@
 import { Alert, Chip, Collapse, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-export const FormAlertCollapse = styled(Collapse)(() => ({
+const FormAlertCollapse = styled(Collapse)(() => ({
   width: "100%",
   minWidth: 0,
   maxWidth: "100%",
   flexShrink: 0,
 }));
 
-export const FormAlertGrid = styled(Grid)(() => ({
+const FormAlertGrid = styled(Grid)(() => ({
   width: "100%",
   minWidth: 0,
   alignItems: "center",
 })) as typeof Grid;
 
-export const FormAlertGrow = styled(Grid)(() => ({
+const FormAlertGrow = styled(Grid)(() => ({
   minWidth: 0,
 })) as typeof Grid;
 
-export const FormAlertMessage = styled(Alert)(({ theme }) => ({
+const FormAlertMessage = styled(Alert)({
   borderRadius: "8px",
   width: "100%",
   maxWidth: "100%",
@@ -27,13 +27,13 @@ export const FormAlertMessage = styled(Alert)(({ theme }) => ({
     overflowWrap: "break-word",
     wordBreak: "break-word",
   },
-}));
+});
 
-export const FormAlertChip = styled(Chip)(() => ({
+const FormAlertChip = styled(Chip)(() => ({
   borderRadius: "8px",
 }));
 
-export type FormAlertProps = {
+type FormAlertProps = {
   error: string | null;
   label?: string;
   severity?: "error" | "warning" | "info" | "success";

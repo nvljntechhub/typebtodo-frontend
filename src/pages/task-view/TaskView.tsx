@@ -8,7 +8,7 @@ import {
   TaskList,
 } from "@/components/styled/dashboard";
 import FormAlert from "@/components/ui/Alert";
-import { useAuth } from "@/context/AuthProvider";
+import { useAuth } from "@/context/auth-context";
 import { useSnackbarAlert } from "@/hooks/useSnackbar";
 import CompletedTasks from "@/pages/task-view/CompletedTasks";
 import ProfileMenu from "@/pages/task-view/ProfileMenu";

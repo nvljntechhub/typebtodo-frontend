@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const StatusMaintenance = (props: Props) => {
+const StatusMaintenance = () => {
   return <div>StatusMaintenance</div>;
 };
 

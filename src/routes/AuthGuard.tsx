@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from "react-router";
-import { useAuth } from "@/context/AuthProvider";
+import { useAuth } from "@/context/auth-context";
 
 const AuthGuard = () => {
   const { status } = useAuth();

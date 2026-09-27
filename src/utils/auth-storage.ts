@@ -1,11 +1,10 @@
 import type { AuthUser } from "@/service/dto/auth.dto";
 
-export const AUTH_USER_STORAGE_KEY = "dwms_auth_user";
-export const AUTH_REMEMBERED_USERS_STORAGE_KEY = "dwms_remembered_users";
+const AUTH_USER_STORAGE_KEY = "todo_auth_user";
 /** Marks an active cookie-based session (HttpOnly tokens are not readable from JS) */
-export const AUTH_SESSION_FLAG_KEY = "dwms_auth_session";
+const AUTH_SESSION_FLAG_KEY = "todo_auth_session";
 /** Shown once on the login screen after an expired session is cleared */
-export const AUTH_SESSION_ENDED_NOTICE_KEY = "dwms_session_ended";
+export const AUTH_SESSION_ENDED_NOTICE_KEY = "todo_session_ended";
 
 export function markAuthSession(): void {
   try {

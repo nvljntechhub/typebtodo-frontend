@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export type ApiErrorBody = {
+type ApiErrorBody = {
   statusCode: number;
   message: string;
   path?: string;

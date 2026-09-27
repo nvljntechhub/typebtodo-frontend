@@ -11,25 +11,11 @@ const mainRoutes: RouteObject[] = [
     children: [
       {
         path: "",
-        // element: <FullLayout />,
         children: [
           {
             path: "/task-view",
             element: <TaskView />,
           },
-          // {
-          //   path: "/child",
-          //   children: [
-          //     {
-          //       path: "",
-          //       element: <Navigate to="/child/childComponent" replace />,
-          //     },
-          //     {
-          //       path: "child",
-          //       element: <ChildCoponent />,
-          //     },
-          //   ],
-          // },
         ],
       },
     ],

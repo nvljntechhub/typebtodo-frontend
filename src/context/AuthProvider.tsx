@@ -1,14 +1,8 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  type ReactNode,
-} from "react";
+import { useCallback, useEffect, useMemo, type ReactNode } from "react";
 import { useNavigate } from "react-router";
 import authService from "@/service/auth.service";
-import type { AuthUser, LoginDto } from "@/service/dto/auth.dto";
+import type { LoginDto } from "@/service/dto/auth.dto";
+import { AuthContext } from "@/context/auth-context";
 import {
   clearAuthSession,
   clearAuthUser,
@@ -22,22 +16,7 @@ import {
   resetSessionExpiredHandling,
 } from "@/utils/sessionExpiry.utils";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import {
-  sessionCleared,
-  sessionEstablished,
-  type AuthStatus,
-} from "@/store/slices/authSlice";
-
-export type { AuthStatus };
-
-type AuthContextValue = {
-  status: AuthStatus;
-  user: AuthUser | null;
-  login: (payload: LoginDto) => Promise<void>;
-  logout: () => Promise<void>;
-};
-
-const AuthContext = createContext<AuthContextValue | null>(null);
+import { sessionCleared, sessionEstablished } from "@/store/slices/authSlice";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
@@ -97,12 +76,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
-
-export function useAuth(): AuthContextValue {
-  const value = useContext(AuthContext);
-  if (!value) {
-    throw new Error("useAuth must be used within AuthProvider");
-  }
-  return value;
 }

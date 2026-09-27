@@ -3,11 +3,11 @@ import {
   notifySessionExpired,
   shouldEndSessionForRequest,
 } from "./sessionExpiry.utils";
-import { API_ENDPOINTS } from "./api";
+import { BACKEND_URL } from "./properties";
 
 /** Shared client — sends HttpOnly auth cookies on cross-origin requests when configured */
 export const httpClient = axios.create({
-  baseURL: API_ENDPOINTS.BACKEND_URL,
+  baseURL: BACKEND_URL,
   withCredentials: true,
   headers: {
     Accept: "application/json",

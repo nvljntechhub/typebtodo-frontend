@@ -1,5 +1,4 @@
 export const API_ENDPOINTS = {
-  BACKEND_URL: "http://localhost:5001",
   VERSION: "/api/v1",
   AUTH_LOGIN: "/auth/login",
   AUTH_LOGOUT: "/auth/logout",

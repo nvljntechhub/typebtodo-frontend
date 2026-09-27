@@ -8,7 +8,7 @@ const GuestGuard = () => {
 
   if (status === "authenticated") {
     return (
-      <Navigate to={readRedirectPath(location.state) ?? "/dashboard"} replace />
+      <Navigate to={readRedirectPath(location.state) ?? "/task-view"} replace />
     );
   }
 

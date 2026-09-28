@@ -57,6 +57,13 @@ export const ListCard = styled(MuiCard)(({ theme }) => ({
   "&& .MuiOutlinedInput-notchedOutline": {
     borderColor: "#e3ddd3",
   },
+  "&& .MuiTiptap-FieldContainer-root": {
+    borderRadius: 10,
+    backgroundColor: "#fffcf8",
+  },
+  "&& .MuiTiptap-FieldContainer-notchedOutline": {
+    borderColor: "#e3ddd3",
+  },
   "& .MuiButton-contained": {
     height: 46,
     borderRadius: 10,
@@ -76,6 +83,12 @@ export const ListCard = styled(MuiCard)(({ theme }) => ({
       backgroundColor: "#141613",
     },
     "&& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#34382f",
+    },
+    "&& .MuiTiptap-FieldContainer-root": {
+      backgroundColor: "#141613",
+    },
+    "&& .MuiTiptap-FieldContainer-notchedOutline": {
       borderColor: "#34382f",
     },
     "& .MuiButton-contained": {
@@ -233,7 +246,7 @@ export const ListLede = styled(Typography)(({ theme }) => ({
 
 export const ComposerForm = styled(Box)({
   display: "flex",
-  alignItems: "center",
+  alignItems: "flex-end",
   gap: 8,
 });
 

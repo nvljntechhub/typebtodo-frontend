@@ -6,9 +6,10 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import UndoIcon from "@mui/icons-material/Undo";
+import RichTextInput from "@/components/Inputs/RichTextInput";
+import TextInput from "@/components/Inputs/TextInput";
 import {
   ActionGroup,
-  ComposerInput,
   DoneTitle,
   EditFields,
   IconAction,
@@ -18,6 +19,7 @@ import {
   TaskTitleButton,
 } from "@/components/styled/dashboard";
 import type { Todo, UpdateTodoDto } from "@/service/dto/todo.dto";
+import { isEmptyRichText, richTextToPlainText } from "@/utils/rich-text.utils";
 
 type TaskItemProps = {
   task: Todo;
@@ -56,7 +58,7 @@ export default function TaskItem({
 
     const saved = await onUpdate(task.id, {
       title: nextTitle,
-      description: description.trim() || null,
+      description: isEmptyRichText(description) ? null : description,
     });
     if (saved) setEditing(false);
   };
@@ -78,7 +80,9 @@ export default function TaskItem({
       {editing ? (
         <>
           <EditFields>
-            <ComposerInput
+            <TextInput
+              label="Title"
+              required
               value={title}
               onChange={(event) => setTitle(event.target.value)}
               onKeyDown={(event) => {
@@ -96,26 +100,18 @@ export default function TaskItem({
               }}
               autoFocus
             />
-            <ComposerInput
+            <RichTextInput
+              label="Description"
+              placeholder="Description, optional"
               value={description}
-              onChange={(event) => setDescription(event.target.value)}
+              maxLength={2000}
+              onChange={setDescription}
               onKeyDown={(event) => {
-                if (event.key === "Enter") {
-                  event.preventDefault();
-                  void saveEdit();
-                }
                 if (event.key === "Escape") {
                   event.preventDefault();
                   cancelEdit();
                 }
               }}
-              slotProps={{
-                htmlInput: {
-                  maxLength: 2000,
-                  "aria-label": "Description, optional",
-                },
-              }}
-              placeholder="Description, optional"
             />
           </EditFields>
           <ActionGroup sx={{ mt: "6px" }}>
@@ -143,8 +139,10 @@ export default function TaskItem({
                 {task.title}
               </TaskTitleButton>
             )}
-            {task.description ? (
-              <TaskDescription>{task.description}</TaskDescription>
+            {task.description && !isEmptyRichText(task.description) ? (
+              <TaskDescription>
+                {richTextToPlainText(task.description)}
+              </TaskDescription>
             ) : null}
           </TaskBody>
           <ActionGroup>

@@ -29,9 +29,7 @@ export function markSessionEndedNotice(): void {
   memoryNotice = true;
   try {
     sessionStorage.setItem(AUTH_SESSION_ENDED_NOTICE_KEY, "1");
-  } catch {
-    // sessionStorage is unavailable in some test / restricted environments
-  }
+  } catch {}
 }
 
 export function consumeSessionEndedNotice(): boolean {
@@ -39,9 +37,7 @@ export function consumeSessionEndedNotice(): boolean {
   try {
     stored = sessionStorage.getItem(AUTH_SESSION_ENDED_NOTICE_KEY) === "1";
     sessionStorage.removeItem(AUTH_SESSION_ENDED_NOTICE_KEY);
-  } catch {
-    // ignore
-  }
+  } catch {}
 
   const marked = memoryNotice || stored;
   memoryNotice = false;

@@ -5,3 +5,17 @@ export type TextInputProps = TextFieldProps & {
   required?: boolean;
   otherHelperText?: string;
 };
+
+export type RichTextInputProps = {
+  label: string;
+  required?: boolean;
+  otherHelperText?: string;
+  placeholder?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  onKeyDown?: (event: KeyboardEvent) => void;
+  error?: boolean;
+  helperText?: string;
+  disabled?: boolean;
+  maxLength?: number;
+};

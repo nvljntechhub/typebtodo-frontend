@@ -50,8 +50,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     becomeGuest("signed-out");
   }, [becomeGuest]);
 
-  // The flag is tab-scoped, so a restored session has to re-raise it for a later
-  // 401 to be reported as an expired session rather than a plain guest visit.
   useEffect(() => {
     if (status === "authenticated") {
       markAuthSession();

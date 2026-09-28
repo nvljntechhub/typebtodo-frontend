@@ -5,7 +5,6 @@ import {
 } from "./sessionExpiry.utils";
 import { BACKEND_URL } from "./properties";
 
-/** Shared client — sends HttpOnly auth cookies on cross-origin requests when configured */
 export const httpClient = axios.create({
   baseURL: BACKEND_URL,
   withCredentials: true,
@@ -16,7 +15,6 @@ export const httpClient = axios.create({
   },
 });
 
-// Let the browser set multipart boundary when sending FormData.
 httpClient.interceptors.request.use((config) => {
   if (config.data instanceof FormData) {
     if (typeof config.headers?.set === "function") {

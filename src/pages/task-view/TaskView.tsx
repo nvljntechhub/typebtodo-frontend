@@ -17,6 +17,7 @@ import TodoComposer from "@/pages/task-view/TodoComposer";
 import type { CreateTodoDto, Todo, UpdateTodoDto } from "@/service/dto/todo.dto";
 import todoService from "@/service/todo.service";
 import { handleApiError } from "@/utils/error-handler.utils";
+import { richTextToPlainText } from "@/utils/rich-text.utils";
 import { successMessages } from "@/utils/properties";
 
 function matchesQuery(todo: Todo, query: string) {
@@ -24,7 +25,9 @@ function matchesQuery(todo: Todo, query: string) {
   if (!needle) return true;
   return (
     todo.title.toLowerCase().includes(needle) ||
-    (todo.description ?? "").toLowerCase().includes(needle)
+    richTextToPlainText(todo.description ?? "")
+      .toLowerCase()
+      .includes(needle)
   );
 }
 

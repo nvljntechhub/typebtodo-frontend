@@ -1,12 +1,11 @@
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { Button } from "@mui/material";
-import {
-  ComposerForm,
-  ComposerInput,
-  ComposerStack,
-} from "@/components/styled/dashboard";
+import RichTextInput from "@/components/Inputs/RichTextInput";
+import TextInput from "@/components/Inputs/TextInput";
+import { ComposerForm, ComposerStack } from "@/components/styled/dashboard";
 import type { CreateTodoDto } from "@/service/dto/todo.dto";
+import { isEmptyRichText } from "@/utils/rich-text.utils";
 
 type TodoComposerProps = {
   onCreate: (payload: CreateTodoDto) => Promise<boolean>;
@@ -20,10 +19,9 @@ export default function TodoComposer({ onCreate }: TodoComposerProps) {
     const nextTitle = title.trim();
     if (!nextTitle) return;
 
-    const nextDescription = description.trim();
     const created = await onCreate({
       title: nextTitle,
-      ...(nextDescription ? { description: nextDescription } : {}),
+      ...(!isEmptyRichText(description) ? { description } : {}),
     });
     if (!created) return;
 
@@ -34,7 +32,9 @@ export default function TodoComposer({ onCreate }: TodoComposerProps) {
   return (
     <ComposerForm>
       <ComposerStack>
-        <ComposerInput
+        <TextInput
+          label="Title"
+          required
           placeholder="Add a task"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
@@ -48,22 +48,12 @@ export default function TodoComposer({ onCreate }: TodoComposerProps) {
             htmlInput: { maxLength: 255, "aria-label": "Add a task" },
           }}
         />
-        <ComposerInput
+        <RichTextInput
+          label="Description"
           placeholder="Description, optional"
           value={description}
-          onChange={(event) => setDescription(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              event.preventDefault();
-              void submit();
-            }
-          }}
-          slotProps={{
-            htmlInput: {
-              maxLength: 2000,
-              "aria-label": "Description, optional",
-            },
-          }}
+          maxLength={2000}
+          onChange={setDescription}
         />
       </ComposerStack>
       <Button
